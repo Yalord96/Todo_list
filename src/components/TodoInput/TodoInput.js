@@ -13,11 +13,10 @@ export default class TodoInput extends Component {
                         </div>
                     </div>
                     <input type="text" className="form-control text-capitalize" placeholder="Name..."
-                    value={item} onChange={handleChange}/>
+                           value={item} onChange={handleChange}/>
 
                 </div>
                 <button type={"submit"}
-                        // className="todo_button btn btn-primary"
                         className={editItem ? "todo_button btn btn-success"
                             : "todo_button btn btn-primary"}>
                     {editItem ? 'edit item' : "add item"}</button>
