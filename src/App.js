@@ -65,8 +65,7 @@ export default class App extends Component {
             id: id
         })
     }
-
-    handleDone = id => {
+    handleDone = (id) => {
         let {items} = this.state;
         const index = this.state.items.map(item => item.id).indexOf(id);
 
@@ -86,7 +85,7 @@ export default class App extends Component {
     }
 
 
-    handlePriority = id => {
+    handlePriority = (id) => {
         let {items} = this.state;
         const index = this.state.items.map(item => item.id).indexOf(id);
 
