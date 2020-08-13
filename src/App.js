@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import TodoInput from "./components/TodoInput/TodoInput";
-import TodoItem from "./components/TodoItem";
+import TodoItem from "./components/TodoItems/TodoItem";
 import TodoList from "./components/TodoList/TodoList";
 
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {v4 as uuidv4} from 'uuid';
+import CircularStatic from "./components/PreLoader/PreLoader";
+import Search from "./components/Search/Search";
 
 export default class App extends Component {
     constructor(props) {
@@ -16,9 +18,22 @@ export default class App extends Component {
             item: '',
             editItem: false,
             completed: false,
-            priority: false
+            priority: false,
+            loader: true
         }
     };
+
+
+    componentDidMount() {
+        setTimeout(this.preLoader, 2000)
+    }
+
+    preLoader = () => {
+        this.setState({
+            loader: false
+        })
+    }
+
 
     handleChange = (event) => {
         this.setState({
@@ -107,21 +122,27 @@ export default class App extends Component {
 
 
     render() {
-
+        const {loader} = this.state;
         return (
-            <div className="container">
-                <div className="row d-flex flex-column">
-                    {/*<div className="col-10 mx-auto col-md-8 mt-4"></div>*/}
-                    <h3 className="text-capitalize text-center">todo input</h3>
-                    <TodoInput item={this.state.item} handleChange={this.handleChange}
-                               handleSubmit={this.handleSubmit}
-                               editItem={this.state.editItem}/>
-                    <TodoList items={this.state.items} clearList={this.clearList}
-                              handleDelete={this.handleDelete} handleEdit={this.handleEdit}
-                              handleDone={this.handleDone}
-                              handlePriority={this.handlePriority}/>
+            loader ? <CircularStatic/>
+                : <div className="container">
+                    <div className="row d-flex flex-column">
+                        {/*<div className="col-10 mx-auto col-md-8 mt-4"></div>*/}
+                        <div className="row justify-content-end">
+                            <h3 className="text-capitalize text-center my-5 col-8">todo input</h3>
+                            <Search/>
+                        </div>
+
+                        <TodoInput item={this.state.item} handleChange={this.handleChange}
+                                   handleSubmit={this.handleSubmit}
+                                   editItem={this.state.editItem}/>
+                        <TodoList items={this.state.items} clearList={this.clearList}
+                                  handleDelete={this.handleDelete} handleEdit={this.handleEdit}
+                                  handleDone={this.handleDone}
+                                  handlePriority={this.handlePriority}/>
+                    </div>
+
                 </div>
-            </div>
         );
     }
 }

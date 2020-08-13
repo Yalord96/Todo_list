@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import TodoItem from "../TodoItem";
+import TodoItem from "../TodoItems/TodoItem";
 import './TodoList.css';
 
 export default class TodoList extends Component {
     render() {
         const {items, clearList, handleDelete, handleEdit, handleDone, handlePriority} = this.props;
-
 
         const activeTask = items.filter(task => task.completed === false);
         const completedTask = items.filter(task => task.completed === true);

@@ -12,7 +12,7 @@ export default class TodoInput extends Component {
                             <i className="fas fa-book"></i>
                         </div>
                     </div>
-                    <input type="text" className="form-control text-capitalize" placeholder="Name..."
+                    <input type="text" className="form-control text-capitalize" maxLength={"50"} minLength={"1"} placeholder="Name..."
                            value={item} onChange={handleChange}/>
 
                 </div>
